@@ -35,10 +35,15 @@
         <div class="dropzone-container">
             <form id="uploader" class="dropzone-drop-area">
                 <input type="hidden" name="gpu" id="gpu-param" />
+                <input type="hidden" name="reformat" id="reformat-param" />
             </form>
             <div>
                 <input type="checkbox" id="cpu-checkbox" name="cpu-checkbox" />
-                <label for="cpu-checkbox">Force CPU</label>
+                <label for="cpu-checkbox" title="Forces CPU processing. Slower but can process bigger images without running out of memory">Force CPU</label>
+            </div>
+            <div>
+                <input type="checkbox" id="reformat-checkbox" name="reformat-checkbox" />
+                <label for="reformat-checkbox" title="Pre-process the image by reducing its dimensions. Use for big images that runs out of memory">Reformat</label>
             </div>
             <div>
                 <button id="btn-go" class="go-button">Go</button>

@@ -91,8 +91,9 @@ function Go() {
 	}
 
     // Extra parameters for process request
-    let gpu = $("#cpu-checkbox").is(":checked") ? "-1" : "0";
-    $("#gpu-param").val(gpu);
+    $("#gpu-param").val($("#cpu-checkbox").is(":checked") ? "-1" : "0");
+    $("#reformat-param").val($("#reformat-checkbox").is(":checked"));
+    
 
     startWait();
     dropzone.processQueue(); 
