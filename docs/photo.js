@@ -20,10 +20,8 @@ $(document).ready(function () {
 
 function setupDropFilesBox() {
     $("#uploader").addClass('dropzone');
-    let gpu = $("#cpu-checkbox").is(":checked") ? "-1" : "0";
     dropzone = new Dropzone("#uploader", {
         url: apiUrl + '/p',
-        params: { 'gpu': gpu },
         paramName: "file",
         maxFilesize: 12, // MB
         maxFiles: 20,
@@ -91,8 +89,10 @@ function Go() {
     if (dropzone.getQueuedFiles().length === 0) {
 		return;
 	}
-	
-    $("#file-format").val("parameter example");
+
+    // Extra parameters for process request
+    let gpu = $("#cpu-checkbox").is(":checked") ? "-1" : "0";
+    $("#gpu-param").val(gpu);
 
     startWait();
     dropzone.processQueue(); 
