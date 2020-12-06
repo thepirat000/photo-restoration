@@ -65,7 +65,7 @@ namespace photo_api.Adapter
             var inputFolder = Path.Combine(InputFolderRoot, traceId);
             var outputFolder = Path.Combine(OutputFolderRoot, traceId);
             Directory.CreateDirectory(outputFolder);
-            var command = @$"python run.py --input_folder '{inputFolder}' --output_folder '{outputFolder}' --GPU {GpuParam}";
+            var command = @$"python run.py --input_folder ""{inputFolder}"" --output_folder ""{outputFolder}"" --GPU {GpuParam}";
             // TODO: param for sctrath detection          
             Startup.EphemeralLog($"Will execute: {command}", false);
 
