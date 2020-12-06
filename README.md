@@ -11,5 +11,5 @@ https://thepirat000.github.io/photo-restoration/
 ## References
 <a id="1">[1]</a> 
 Wan, Ziyu and Zhang, Bo and Chen, Dongdong and Zhang, Pan and Chen, Dong and Liao, Jing and Wen, Fang (2020). 
-Bringing Old Photos Back to Life
+Bringing Old Photos Back to Life.
 Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, 2747-2757.
