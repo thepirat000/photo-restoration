@@ -16,6 +16,16 @@ $(document).ready(function () {
     $("#btn-close-wait").on("click", function () {
         stopWait();
     });
+    $('#scratched-checkbox').change(function () {
+        if (this.checked) {
+            $('#cpu-checkbox').prop('checked', false);
+            $('#cpu-checkbox').attr('disabled', true);
+        }
+        else {
+            $('#cpu-checkbox').attr('disabled', false);
+        }
+
+    }).change();
 });
 
 function setupDropFilesBox() {
@@ -98,7 +108,6 @@ function Go() {
     startWait();
     dropzone.processQueue(); 
 }
-
 
 function TestConnectivity() {
     $("#server-down-text").html('');
