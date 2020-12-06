@@ -13,6 +13,26 @@ body {
     text-align: center;
 }
 
+button {
+    background: #0084ff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 14px;
+    margin-top: 10px;
+    color: #fff;
+    cursor: pointer;
+    font-size: large;
+}
+
+.go-button {
+    width: 100%;
+    height: 42px;
+    vertical-align: middle;
+}
+
+.dropzone-container {
+    max-width: 800px;
+}
 
 .loader {
     display: block;

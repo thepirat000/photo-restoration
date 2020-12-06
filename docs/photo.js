@@ -20,10 +20,10 @@ $(document).ready(function () {
 
 function setupDropFilesBox() {
     $("#uploader").addClass('dropzone');
-	
+    let gpu = $("#cpu-checkbox").is(":checked") ? "-1" : "0";
     dropzone = new Dropzone("#uploader", {
         url: apiUrl + '/p',
-        params: { 'gpu': '-1' },
+        params: { 'gpu': gpu },
         paramName: "file",
         maxFilesize: 12, // MB
         maxFiles: 20,
