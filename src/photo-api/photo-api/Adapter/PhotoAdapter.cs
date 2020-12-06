@@ -22,7 +22,8 @@ namespace photo_api.Adapter
             Startup.EphemeralLog($"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] {type}: {line}");
             if (type == "stdout")
             {
-                if (line.Contains("CUDA out of memory", StringComparison.InvariantCultureIgnoreCase))
+                if (line.Contains("CUDA out of memory", StringComparison.InvariantCultureIgnoreCase)
+                    || line.Contains("not enough memory", StringComparison.InvariantCultureIgnoreCase))
                 {
                     status.ErrorCount++;
                     status.Errors.Add(line);
