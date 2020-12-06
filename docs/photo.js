@@ -1,5 +1,5 @@
-//const baseUrl = "https://photo-api.eastus.cloudapp.azure.com";
-const baseUrl = "https://localhost:44391";
+const baseUrl = "https://photo-3d.eastus.cloudapp.azure.com";
+//const baseUrl = "https://localhost:44391";
 
 const apiUrl = baseUrl + "/photorestoration";
 const testUrl = baseUrl + "/test";
