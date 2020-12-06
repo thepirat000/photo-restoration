@@ -24,7 +24,7 @@ namespace photo_api.Controllers
     {
         private static long Max_Upload_Size = long.Parse(Startup.Configuration["AppSettings:MaxUploadSize"]);
         private static string InputFolderRoot = Startup.Configuration["AppSettings:InputFolder"];
-        private static string OutputFolderRoot = Startup.Configuration["AppSettings:OutputFolder"];
+        private static string ZipFolderRoot = Startup.Configuration["AppSettings:ZipFolder"];
 
         private readonly ILogger<PhotoRestorationController> _logger;
         private readonly PhotoAdapter _photoAdapter = new PhotoAdapter();
@@ -70,10 +70,10 @@ namespace photo_api.Controllers
             {
                 return BadRequest("Don't try to cheat me");
             }
-            var zipFile = Path.Combine(OutputFolderRoot, traceId, "final_output", $"{traceId}-restored.zip");
+            var zipFile = Path.Combine(ZipFolderRoot, $"{traceId}-restored.zip");
             if (System.IO.File.Exists(zipFile))
             {
-                return PhysicalFile(zipFile, "application/zip", $"{traceId}-videos.zip");
+                return PhysicalFile(zipFile, "application/zip", $"{traceId}-restored.zip");
             }
             return Problem($"File {zipFile} not found");
         }
@@ -109,7 +109,7 @@ namespace photo_api.Controllers
             }
 
             // Make zip
-            var outputZip = Path.Combine(result.OutputFolder, $"{traceId}-restored.zip");
+            var outputZip = Path.Combine(ZipFolderRoot, $"{traceId}-restored.zip");
             MakeZip(result.OutputFolder, outputZip);
 
             // Delete temp folders

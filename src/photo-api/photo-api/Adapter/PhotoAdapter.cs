@@ -12,7 +12,6 @@ namespace photo_api.Adapter
         private static string InputFolderRoot = Startup.Configuration["AppSettings:InputFolder"];
         private static string OutputFolderRoot = Startup.Configuration["AppSettings:OutputFolder"];
         private static string GpuParam = Startup.Configuration["AppSettings:GpuParam"];
-        
 
         private static void ProcessOutputLine(string type, string line, PhotoProcessResult status)
         {
