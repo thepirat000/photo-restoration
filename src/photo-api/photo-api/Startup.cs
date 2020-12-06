@@ -58,7 +58,7 @@ namespace photo_api
 
         }
 
-        public static void EphemeralLog(string text, bool important)
+        public static void EphemeralLog(string text, bool important = false)
         {
             if (string.IsNullOrWhiteSpace(text))
             {

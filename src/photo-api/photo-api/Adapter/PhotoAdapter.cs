@@ -20,7 +20,7 @@ namespace photo_api.Adapter
             {
                 return;
             }
-            Startup.EphemeralLog($"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] {type}: {line}", false);
+            Startup.EphemeralLog($"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] {type}: {line}");
             if (type == "stderr")
             {
                 status.ErrorCount++;
@@ -67,6 +67,7 @@ namespace photo_api.Adapter
             Directory.CreateDirectory(outputFolder);
             var command = @$"python run.py --input_folder '{inputFolder}' --output_folder '{outputFolder}' --GPU {GpuParam}";
             // TODO: param for sctrath detection          
+            Startup.EphemeralLog($"Will execute: {command}", false);
 
             using (var sw = process.StandardInput)
             {
