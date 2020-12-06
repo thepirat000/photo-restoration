@@ -1,2 +1,4 @@
-# photo-restoration
-Old Photo Restoration (Deep Latent Space Translation)
+# photo-api
+Photo Restoration Web API
+
+https://thepirat000.github.io/photo-restoration/

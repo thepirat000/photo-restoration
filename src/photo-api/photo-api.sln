@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "photo-api", "photo-api\photo-api.csproj", "{02FFA5ED-0C5E-4A8C-B97F-03F80F39169A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FA04DEB5-7CBE-4F70-AF8C-CFEED1545BE3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{808C2E0D-FBF0-4E63-A8FC-67A81D1A4F9C}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\docs\photo.css = ..\..\docs\photo.css
+		..\..\docs\photo.js = ..\..\docs\photo.js
+		..\..\docs\index.html = ..\..\docs\index.html
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{02FFA5ED-0C5E-4A8C-B97F-03F80F39169A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02FFA5ED-0C5E-4A8C-B97F-03F80F39169A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02FFA5ED-0C5E-4A8C-B97F-03F80F39169A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02FFA5ED-0C5E-4A8C-B97F-03F80F39169A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{808C2E0D-FBF0-4E63-A8FC-67A81D1A4F9C} = {FA04DEB5-7CBE-4F70-AF8C-CFEED1545BE3}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {18A148FF-DDBC-4683-B0AB-CD078DD96BE1}
+	EndGlobalSection
+EndGlobal

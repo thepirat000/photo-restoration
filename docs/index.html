@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:fb="http://ogp.me/ns/fb#">
+<head>
+    <meta charset="utf-8" />
+    <meta name="google" content="notranslate">
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Photo Restoration</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+    <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="photo.css">
+
+</head>
+<body>
+    <h3>Restore old photos</h3>
+    <div id="server-down-div" style="display: none;">
+        <h2>Server currently down</h2>
+        <p id="server-down-text"></p>
+    </div>
+    <div>
+        <div class="dropzone-container">
+            <form id="uploader" class="dropzone-drop-area">
+                <input type="hidden" name="format" id="file-format" />
+            </form>
+
+            <div>
+                <button id="btn-go">Go</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="wait-dialog" class="modal">
+        <div class="loader" id="spinner" style="display:none;"></div>
+        <div>
+            Processing. Please wait a few minutes...
+        </div>
+        <button id="btn-close-wait">Close</button>
+    </div>
+
+    <div id="download-links-div" style="display: none;">
+        <ul id="download-links-list">
+        </ul>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            <p>&copy; 2020 ThePirat - <a href="https://github.com/thepirat000/photo-api">Source code</a> - Powered by <a href="https://github.com/microsoft/Bringing-Old-Photos-Back-to-Life">Old Photo Restoration</a></p>
+            <span style="margin: 0 auto; padding: 10px 0px 0px 0px; vertical-align: middle;"><a href="https://paypal.me/thepirat000"><img src="https://img.shields.io/badge/Sponsor-critical" /></a></span>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="photo.js"></script>
+
+</body>
+
+</html>
