@@ -23,6 +23,7 @@ function setupDropFilesBox() {
 	
     dropzone = new Dropzone("#uploader", {
         url: apiUrl + '/p',
+        params: { 'gpu': '-1' },
         paramName: "file",
         maxFilesize: 12, // MB
         maxFiles: 20,

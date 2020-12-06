@@ -48,7 +48,7 @@ namespace photo_api.Adapter
             }
         }
 
-        public PhotoProcessResult Execute(string traceId)
+        public PhotoProcessResult Execute(string traceId, string gpu)
         {
             var signaled = _semaphore.WaitOne(300000);
             if (!signaled)
@@ -57,7 +57,7 @@ namespace photo_api.Adapter
             }
             try
             {
-                return ExecuteImpl(traceId);
+                return ExecuteImpl(traceId, gpu);
             }
             finally 
             {
@@ -65,7 +65,7 @@ namespace photo_api.Adapter
             }
         }
 
-        private PhotoProcessResult ExecuteImpl(string traceId)
+        private PhotoProcessResult ExecuteImpl(string traceId, string gpu)
         {
             var output = new StringBuilder();
             var status = new PhotoProcessResult();
@@ -102,7 +102,11 @@ namespace photo_api.Adapter
             var inputFolder = Path.Combine(InputFolderRoot, traceId);
             var outputFolder = Path.Combine(OutputFolderRoot, traceId);
             Directory.CreateDirectory(outputFolder);
-            var command = @$"python run.py --input_folder ""{inputFolder}"" --output_folder ""{outputFolder}"" --GPU {GpuParam}";
+            if (string.IsNullOrEmpty(gpu))
+            {
+                gpu = GpuParam;
+            }
+            var command = @$"python run.py --input_folder ""{inputFolder}"" --output_folder ""{outputFolder}"" --GPU {gpu}";
             // TODO: param for sctrath detection          
             Startup.EphemeralLog($"Will execute: {command}", false);
 

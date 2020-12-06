@@ -38,7 +38,7 @@ namespace photo_api.Controllers
         [Produces("application/json")]
         [RequestFormLimits(MultipartBodyLengthLimit = 209715200)]
         [RequestSizeLimit(209715200)]
-        public async Task<ActionResult<PhotoProcessResult>> Process()
+        public async Task<ActionResult<PhotoProcessResult>> Process([FromQuery(Name = "gpu")] string gpu)
         {
             if (Request.Form.Files?.Count == 0)
             {
@@ -55,7 +55,7 @@ namespace photo_api.Controllers
 
             // TODO: Check if file exists
 
-            var result = await Process(traceId);
+            var result = await ProcessImpl(traceId, gpu);
             return Ok(result);
         }
 
@@ -78,7 +78,7 @@ namespace photo_api.Controllers
             return Problem($"File {zipFile} not found");
         }
 
-        private async Task<PhotoProcessResult> Process(string traceId)
+        private async Task<PhotoProcessResult> ProcessImpl(string traceId, string gpu)
         {
             // Copy images to input folder
             var inputImagesFolder = Path.Combine(InputFolderRoot, traceId);
@@ -102,7 +102,7 @@ namespace photo_api.Controllers
             }
 
             // Execute
-            var result = _photoAdapter.Execute(traceId);
+            var result = _photoAdapter.Execute(traceId, gpu);
             if (result.ErrorCount > 0)
             {
                 throw new Exception(string.Join(" +++ ", result.Errors));
