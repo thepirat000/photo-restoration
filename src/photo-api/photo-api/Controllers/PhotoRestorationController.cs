@@ -51,7 +51,7 @@ namespace photo_api.Controllers
                 return BadRequest($"Can't process more than {Max_Upload_Size / 1024:N0} Mb of data");
             }
 
-            var traceId = this.HttpContext.TraceIdentifier.Split(':')[0];
+            var traceId = this.HttpContext.TraceIdentifier.Replace(":", "");
 
             // TODO: Check if file exists
 
@@ -145,6 +145,8 @@ namespace photo_api.Controllers
                 return BitConverter.ToString(hash).Replace("-", string.Empty);
             }
         }
+
+
 
     }
 }
