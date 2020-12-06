@@ -36,7 +36,12 @@
             <form id="uploader" class="dropzone-drop-area">
                 <input type="hidden" name="gpu" id="gpu-param" />
                 <input type="hidden" name="reformat" id="reformat-param" />
+                <input type="hidden" name="scratched" id="scratched-param" />
             </form>
+            <div>
+                <input type="checkbox" id="scratched-checkbox" name="scratched-checkbox" />
+                <label for="scratched-checkbox" title="Indicates the photo(s) have scratches and want to be removed">Scratched photo</label>
+            </div>
             <div>
                 <input type="checkbox" id="cpu-checkbox" name="cpu-checkbox" />
                 <label for="cpu-checkbox" title="Forces CPU processing. Slower but can process bigger images without running out of memory">Force CPU</label>

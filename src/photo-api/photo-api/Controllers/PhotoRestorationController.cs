@@ -39,7 +39,8 @@ namespace photo_api.Controllers
         [Produces("application/json")]
         [RequestFormLimits(MultipartBodyLengthLimit = 209715200)]
         [RequestSizeLimit(209715200)]
-        public async Task<ActionResult<PhotoProcessResult>> Process([FromForm(Name = "gpu")] string gpu, [FromForm(Name = "reformat")] bool reformat)
+        public async Task<ActionResult<PhotoProcessResult>> Process([FromForm(Name = "gpu")] string gpu, [FromForm(Name = "reformat")] bool reformat,
+            [FromForm(Name = "scratched")] bool scratched)
         {
             if (Request.Form.Files?.Count == 0)
             {
@@ -56,7 +57,7 @@ namespace photo_api.Controllers
             Startup.EphemeralLog($"Starting process for trace {traceId}");
             // TODO: Check if file exists
 
-            var result = await ProcessImpl(traceId, gpu, reformat);
+            var result = await ProcessImpl(traceId, gpu, reformat, scratched);
             return Ok(result);
         }
 
@@ -79,7 +80,7 @@ namespace photo_api.Controllers
             return Problem($"File {zipFile} not found");
         }
 
-        private async Task<PhotoProcessResult> ProcessImpl(string traceId, string gpu, bool reformat)
+        private async Task<PhotoProcessResult> ProcessImpl(string traceId, string gpu, bool reformat, bool scratched)
         {
             var forceCpu = gpu != null && gpu.Trim() == "-1";
             // Copy images to input folder, and pre-process images
@@ -111,7 +112,7 @@ namespace photo_api.Controllers
             }
 
             // Execute
-            var result = _photoAdapter.Execute(traceId, gpu);
+            var result = _photoAdapter.Execute(traceId, gpu, scratched);
             if (result.ErrorCount > 0)
             {
                 throw new Exception(string.Join(" +++ ", result.Errors));

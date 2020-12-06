@@ -24,7 +24,7 @@ function setupDropFilesBox() {
         url: apiUrl + '/p',
         paramName: "file",
         maxFilesize: 12, // MB
-        maxFiles: 20,
+        maxFiles: 5,
         timeout: 3600000,
         clickable: true,
         acceptedFiles: "image/*",
@@ -93,7 +93,7 @@ function Go() {
     // Extra parameters for process request
     $("#gpu-param").val($("#cpu-checkbox").is(":checked") ? "-1" : "0");
     $("#reformat-param").val($("#reformat-checkbox").is(":checked"));
-    
+    $("#scratched-param").val($("#scratched-checkbox").is(":checked"));
 
     startWait();
     dropzone.processQueue(); 

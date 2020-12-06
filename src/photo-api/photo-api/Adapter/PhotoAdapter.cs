@@ -48,7 +48,7 @@ namespace photo_api.Adapter
             }
         }
 
-        public PhotoProcessResult Execute(string traceId, string gpu)
+        public PhotoProcessResult Execute(string traceId, string gpu, bool scratched)
         {
             Startup.EphemeralLog("Wait for semaphore");
             var signaled = _semaphore.WaitOne(300000);
@@ -58,7 +58,7 @@ namespace photo_api.Adapter
             }
             try
             {
-                return ExecuteImpl(traceId, gpu);
+                return ExecuteImpl(traceId, gpu, scratched);
             }
             finally 
             {
@@ -66,7 +66,7 @@ namespace photo_api.Adapter
             }
         }
 
-        private PhotoProcessResult ExecuteImpl(string traceId, string gpu)
+        private PhotoProcessResult ExecuteImpl(string traceId, string gpu, bool scratched)
         {
             var output = new StringBuilder();
             var status = new PhotoProcessResult();
@@ -107,7 +107,7 @@ namespace photo_api.Adapter
             {
                 gpu = GpuParam;
             }
-            var command = @$"python run.py --input_folder ""{inputFolder}"" --output_folder ""{outputFolder}"" --GPU {gpu}";
+            var command = @$"python run.py --input_folder ""{inputFolder}"" --output_folder ""{outputFolder}"" --GPU {gpu} {(scratched ? "--with_scratch" : "")}";
             // TODO: param for sctrath detection          
             Startup.EphemeralLog($"Will execute: {command}", false);
 
