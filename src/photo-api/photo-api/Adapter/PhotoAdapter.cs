@@ -50,11 +50,13 @@ namespace photo_api.Adapter
 
         public PhotoProcessResult Execute(string traceId, string gpu)
         {
+            Startup.EphemeralLog("Wait for semaphore");
             var signaled = _semaphore.WaitOne(300000);
             if (!signaled)
             {
                 throw new Exception("Server still busy after wait period");
             }
+            Startup.EphemeralLog("Signaled");
             try
             {
                 return ExecuteImpl(traceId, gpu);

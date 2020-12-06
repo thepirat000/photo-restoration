@@ -52,7 +52,7 @@ namespace photo_api.Controllers
             }
 
             var traceId = this.HttpContext.TraceIdentifier.Replace(":", "");
-
+            Startup.EphemeralLog($"Starting process for trace {traceId}");
             // TODO: Check if file exists
 
             var result = await ProcessImpl(traceId, gpu);

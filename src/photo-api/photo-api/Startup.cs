@@ -14,7 +14,9 @@ namespace photo_api
     {
         public Startup(IConfiguration configuration)
         {
-            //ImageHelper.ResizeImage(@"D:\FOTOS\2020\11-Noviembre\IMG_20201030_164902.jpg", 1600, 1600, 90);
+            //ImageHelper.ResizeImage(@"D:\FOTOS\2020\11-Noviembre\IMG_20201030_164902.jpg", @"D:\out_1600_90.jpg", 1600, 1600, 90);
+            //ImageHelper.ResizeImage(@"D:\FOTOS\2020\11-Noviembre\IMG_20201030_164902.jpg", @"D:\out_1600_80.jpg", 1600, 1600, 80);
+            //ImageHelper.ResizeImage(@"D:\FOTOS\2020\11-Noviembre\IMG_20201030_164902.jpg", @"D:\out_1600_75.jpg", 1600, 1600, 75);
 
             Configuration = configuration;
         }
