@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using photo_api.Shell;
 using Microsoft.AspNetCore.Http;
 using System.Security.Cryptography;
+using photo_api.Helpers;
 
 namespace photo_api.Controllers
 {
@@ -55,7 +56,7 @@ namespace photo_api.Controllers
             Startup.EphemeralLog($"Starting process for trace {traceId}");
             // TODO: Check if file exists
 
-            var result = await ProcessImpl(traceId, gpu);
+            var result = await ProcessImpl(traceId, gpu, reformat);
             return Ok(result);
         }
 
@@ -78,9 +79,10 @@ namespace photo_api.Controllers
             return Problem($"File {zipFile} not found");
         }
 
-        private async Task<PhotoProcessResult> ProcessImpl(string traceId, string gpu)
+        private async Task<PhotoProcessResult> ProcessImpl(string traceId, string gpu, bool reformat)
         {
-            // Copy images to input folder
+            var forceCpu = gpu != null && gpu.Trim() == "-1";
+            // Copy images to input folder, and pre-process images
             var inputImagesFolder = Path.Combine(InputFolderRoot, traceId);
             Directory.CreateDirectory(inputImagesFolder);
             foreach (var file in Request.Form.Files)
@@ -97,6 +99,13 @@ namespace photo_api.Controllers
                     using (var output = System.IO.File.Create(filePath))
                     {
                         await file.CopyToAsync(output);
+                    }
+                    if (reformat)
+                    {
+                        var maxDim = forceCpu ? 1400 : 1200;
+                        var qual = 90L;
+                        ImageHelper.ResizeImage(filePath, filePath, maxDim, maxDim, qual);
+                        Startup.EphemeralLog($"Reformatted image in-place to {maxDim}px. {qual}% quality. Original size: {file.Length} bytes. Reformat size: {new FileInfo(filePath).Length} bytes.");
                     }
                 }
             }
