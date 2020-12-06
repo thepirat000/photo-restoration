@@ -23,7 +23,8 @@ namespace photo_api.Adapter
             Startup.EphemeralLog($"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] {type}: {line}");
             if (type == "stderr")
             {
-                if (line.Contains("warning", StringComparison.InvariantCultureIgnoreCase))
+                if (line.Contains("warning", StringComparison.InvariantCultureIgnoreCase)
+                    || line.Contains("nn.Upsample", StringComparison.InvariantCultureIgnoreCase))
                 {
                     // not an error, process wrongly logging success status to stderr
                 }
