@@ -1,7 +1,7 @@
 # Old Photo Restoration API
 Photo Restoration Web API using [microsoft/Bringing-Old-Photos-Back-to-Life](https://github.com/microsoft/Bringing-Old-Photos-Back-to-Life) based on academic research by Ziyu Wan and others [[1]](#1).
 
-https://thepirat000.github.io/photo-restoration/
+## Live demo: https://thepirat000.github.io/photo-restoration/
 
 ### Original vs. Processed
 
