@@ -56,7 +56,6 @@ namespace photo_api.Adapter
             {
                 throw new Exception("Server still busy after wait period");
             }
-            Startup.EphemeralLog("Signaled");
             try
             {
                 return ExecuteImpl(traceId, gpu);

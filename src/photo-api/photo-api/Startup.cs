@@ -14,9 +14,9 @@ namespace photo_api
     {
         public Startup(IConfiguration configuration)
         {
-            //ImageHelper.ResizeImage(@"D:\FOTOS\2020\11-Noviembre\IMG_20201030_164902.jpg", @"D:\out_1600_90.jpg", 1600, 1600, 90);
-            //ImageHelper.ResizeImage(@"D:\FOTOS\2020\11-Noviembre\IMG_20201030_164902.jpg", @"D:\out_1600_80.jpg", 1600, 1600, 80);
-            //ImageHelper.ResizeImage(@"D:\FOTOS\2020\11-Noviembre\IMG_20201030_164902.jpg", @"D:\out_1600_75.jpg", 1600, 1600, 75);
+            //ImageHelper.ResizeImage(@"D:\FOTOS\2020\11-Noviembre\IMG_20201030_164902.jpg", @"D:\out_800_90.jpg", 800, 800, 90);
+            //ImageHelper.ResizeImage(@"D:\FOTOS\2020\11-Noviembre\IMG_20201030_164902.jpg", @"D:\out_800_80.jpg", 800, 800, 80);
+            //ImageHelper.ResizeImage(@"D:\FOTOS\2020\11-Noviembre\IMG_20201030_164902.jpg", @"D:\out_800_70.jpg", 800, 800, 70);
 
             Configuration = configuration;
         }
@@ -81,7 +81,7 @@ namespace photo_api
                         else
                         {
                             var action = (ev as Audit.WebApi.AuditEventWebApi)?.Action;
-                            var msg = $"Action: {action.ControllerName}/{action.ActionName}{new Uri(action.RequestUrl).Query} - Response: {action.ResponseStatusCode} {action.ResponseStatus}: {System.Text.Json.JsonSerializer.Serialize(action.ResponseBody?.Value)}. Event: {action.ToJson()}";
+                            var msg = $"Action: {action.ControllerName}/{action.ActionName}{new Uri(action.RequestUrl).Query} - Duration: {ev.Duration} ms. - Response: {action.ResponseStatusCode} {action.ResponseStatus}: {System.Text.Json.JsonSerializer.Serialize(action.ResponseBody?.Value)}. Event: {action.ToJson()}";
                             return Encoding.UTF8.GetBytes(msg);
                         }
                     }));
