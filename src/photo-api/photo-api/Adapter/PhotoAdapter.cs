@@ -23,8 +23,15 @@ namespace photo_api.Adapter
             Startup.EphemeralLog($"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] {type}: {line}");
             if (type == "stderr")
             {
-                status.ErrorCount++;
-                status.Errors.Add(line);
+                if (line.Contains("warning", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    // not an error, process wrongly logging success status to stderr
+                }
+                else
+                {
+                    status.ErrorCount++;
+                    status.Errors.Add(line);
+                }
             }
         }
 
