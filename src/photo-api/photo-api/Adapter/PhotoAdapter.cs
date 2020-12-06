@@ -15,7 +15,7 @@ namespace photo_api.Adapter
         private static string GpuParam = Startup.Configuration["AppSettings:GpuParam"];
         private static int MaxConcurrentProcesses = int.Parse(Startup.Configuration["AppSettings:MaxConcurrentProcesses"]);
 
-        private readonly Semaphore _semaphore = new Semaphore(0, MaxConcurrentProcesses);
+        private readonly Semaphore _semaphore = new Semaphore(MaxConcurrentProcesses, MaxConcurrentProcesses);
 
         private static void ProcessOutputLine(string type, string line, PhotoProcessResult status)
         {
