@@ -20,7 +20,15 @@ namespace photo_api.Adapter
                 return;
             }
             Startup.EphemeralLog($"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] {type}: {line}");
-            if (type == "stderr")
+            if (type == "stdout")
+            {
+                if (line.Contains("CUDA out of memory", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    status.ErrorCount++;
+                    status.Errors.Add(line);
+                }
+            }
+            else if (type == "stderr")
             {
                 if (line.Contains("warning", StringComparison.InvariantCultureIgnoreCase)
                     || line.Contains("nn.Upsample", StringComparison.InvariantCultureIgnoreCase))
