@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Threading;
 
 namespace photo_api.Adapter
 {
@@ -12,6 +13,9 @@ namespace photo_api.Adapter
         private static string InputFolderRoot = Startup.Configuration["AppSettings:InputFolder"];
         private static string OutputFolderRoot = Startup.Configuration["AppSettings:OutputFolder"];
         private static string GpuParam = Startup.Configuration["AppSettings:GpuParam"];
+        private static int MaxConcurrentProcesses = int.Parse(Startup.Configuration["AppSettings:MaxConcurrentProcesses"]);
+
+        private readonly Semaphore _semaphore = new Semaphore(0, MaxConcurrentProcesses);
 
         private static void ProcessOutputLine(string type, string line, PhotoProcessResult status)
         {
@@ -45,6 +49,23 @@ namespace photo_api.Adapter
         }
 
         public PhotoProcessResult Execute(string traceId)
+        {
+            var signaled = _semaphore.WaitOne(300000);
+            if (!signaled)
+            {
+                throw new Exception("Server still busy after wait period");
+            }
+            try
+            {
+                return ExecuteImpl(traceId);
+            }
+            finally 
+            {
+                _semaphore.Release();
+            }
+        }
+
+        private PhotoProcessResult ExecuteImpl(string traceId)
         {
             var output = new StringBuilder();
             var status = new PhotoProcessResult();
