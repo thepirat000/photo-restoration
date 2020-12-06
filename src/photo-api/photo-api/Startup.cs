@@ -14,6 +14,9 @@ namespace photo_api
     {
         public Startup(IConfiguration configuration)
         {
+            //ImageHelper.ResizeImage(@"D:\FOTOS\2020\11-Noviembre\AirBrush_20201109232815.jpg", @"d:\output.jpg", 800, 800, 85L);
+
+
             Configuration = configuration;
         }
 
