@@ -38,7 +38,7 @@ namespace photo_api.Controllers
         [Produces("application/json")]
         [RequestFormLimits(MultipartBodyLengthLimit = 209715200)]
         [RequestSizeLimit(209715200)]
-        public async Task<ActionResult<PhotoProcessResult>> Process([FromQuery(Name = "gpu")] string gpu)
+        public async Task<ActionResult<PhotoProcessResult>> Process([FromForm(Name = "gpu")] string gpu)
         {
             if (Request.Form.Files?.Count == 0)
             {
