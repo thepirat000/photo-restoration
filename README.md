@@ -3,7 +3,7 @@ Photo Restoration Web API using [microsoft/Bringing-Old-Photos-Back-to-Life](htt
 
 ## Live demo: https://thepirat000.github.io/photo-restoration/
 
-### Original vs. Processed
+### Original vs. Restored
 
 ![Original](https://i.imgur.com/fugWPnt.jpg "Original")
 ![Processed](https://i.imgur.com/2DlIGMB.jpg "Processed")
