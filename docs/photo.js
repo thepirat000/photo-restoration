@@ -33,7 +33,7 @@ function setupDropFilesBox() {
     dropzone = new Dropzone("#uploader", {
         url: apiUrl + '/p',
         paramName: "file",
-        maxFilesize: 12, // MB
+        maxFilesize: 2, // MB
         maxFiles: 5,
         timeout: 3600000,
         clickable: true,
@@ -42,7 +42,7 @@ function setupDropFilesBox() {
         createImageThumbnails: true,
         parallelUploads: 5,
         method: "post",
-        dictDefaultMessage: "Drop images here or Click to upload",
+        dictDefaultMessage: "Drop images or Click",
         successmultiple: onFileUploadCompleted,
 		autoProcessQueue: false,
 		addRemoveLinks: true,
