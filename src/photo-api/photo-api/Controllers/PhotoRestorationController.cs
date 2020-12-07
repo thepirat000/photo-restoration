@@ -26,6 +26,7 @@ namespace photo_api.Controllers
         private static long Max_Upload_Size = long.Parse(Startup.Configuration["AppSettings:MaxUploadSize"]);
         private static string InputFolderRoot = Startup.Configuration["AppSettings:InputFolder"];
         private static string ZipFolderRoot = Startup.Configuration["AppSettings:ZipFolder"];
+        private static string OutputFolderRoot = Startup.Configuration["AppSettings:OutputFolder"];
 
         private readonly ILogger<PhotoRestorationController> _logger;
         private readonly PhotoAdapter _photoAdapter = new PhotoAdapter();
@@ -72,6 +73,20 @@ namespace photo_api.Controllers
             {
                 return BadRequest("Don't try to cheat me");
             }
+
+            // If it's just one photo retutn the image, otherwise return a zip file
+            var outputDirInfo = new DirectoryInfo(Path.Combine(OutputFolderRoot, traceId, "final_output"));
+            if (!outputDirInfo.Exists)
+            {
+                return BadRequest("Trace ID contains no files");
+            }
+            var files = outputDirInfo.GetFiles();
+            if (files.Length == 1)
+            {
+                return PhysicalFile(files[0].FullName, "image/png", files[0].Name);
+            }
+            
+            // Return a ZIP file
             var zipFile = Path.Combine(ZipFolderRoot, $"{traceId}-restored.zip");
             if (System.IO.File.Exists(zipFile))
             {
@@ -155,8 +170,5 @@ namespace photo_api.Controllers
                 return BitConverter.ToString(hash).Replace("-", string.Empty);
             }
         }
-
-
-
     }
 }
